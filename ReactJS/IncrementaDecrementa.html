@@ -22,8 +22,11 @@
             this.state={incremento:1,decremento:1,valor:0,value:''};
         }
         handleChange=(event)=> {
-            this.setState({value: event.target.value});
+            let inputvalue=parseInt(event.target.value)
+            if (typeof(inputvalue)==="number" && !isNaN(inputvalue)){
+            this.setState({value: inputvalue});
         }
+    }
 
         incrementa=()=>{
             this.setState({valor:this.state.valor+this.state.incremento})
@@ -34,14 +37,14 @@
 
         alteraIncremento=()=>{
             let inputvalue=parseInt(this.state.value)
-            if (typeof(inputvalue)==="number" && inputvalue!==NaN){
+            if (typeof(inputvalue)==="number" && !isNaN(inputvalue)){
                 this.setState({incremento:inputvalue})
             }
         }
 
         alteraDecremento=()=>{
             let inputvalue=parseInt(this.state.value)
-            if (typeof(inputvalue)==="number" && inputvalue!==NaN){
+            if (typeof(inputvalue)==="number" && !isNaN(inputvalue)){
                 this.setState({decremento:inputvalue})
             }
         }
