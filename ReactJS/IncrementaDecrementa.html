@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <script type="text/babel">
+
+    class App extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={incremento:1,decremento:1,valor:0,value:''};
+        }
+        handleChange=(event)=> {
+            this.setState({value: event.target.value});
+        }
+
+        incrementa=()=>{
+            this.setState({valor:this.state.valor+this.state.incremento})
+        }
+        decrementa=()=>{
+            this.setState({valor:this.state.valor-this.state.decremento})
+        }
+
+        alteraIncremento=()=>{
+            let inputvalue=parseInt(this.state.value)
+            if (typeof(inputvalue)==="number" && inputvalue!==NaN){
+                this.setState({incremento:inputvalue})
+            }
+        }
+
+        alteraDecremento=()=>{
+            let inputvalue=parseInt(this.state.value)
+            if (typeof(inputvalue)==="number" && inputvalue!==NaN){
+                this.setState({decremento:inputvalue})
+            }
+        }
+        render(){
+            return (
+                <div>
+                <h1>Valor : {this.state.valor}</h1>
+                <h2>Incremento : {this.state.incremento}</h2>
+                <h2>Decremento : {this.state.decremento}</h2>
+                <input type="number" value={this.state.value} onChange={this.handleChange} />
+                <button onClick={this.alteraIncremento}>Alterar Incremento</button>
+                <button onClick={this.incrementa}>Incrementar</button>
+                <button onClick={this.alteraDecremento}>Alterar Decremento</button>
+                <button onClick={this.decrementa}>Decrementar</button>
+                </div>
+            );
+        }
+
+    };
+        const root=document.querySelector("#root");
+        ReactDOM.render(<App/>,root);
+    </script>
+</body>
+</html>
